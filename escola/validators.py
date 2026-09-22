@@ -1,14 +1,17 @@
 import re
-from django.core.exceptions import ValidationError
+from validate_docbr import CPF
 
-def cpf_invalido(value):
-    if not re.match(r'^\d{11}$', value):
-        raise ValidationError("CPF inválido. Deve conter 11 dígitos.")
+def cpf_invalido(numero_cpf):
+    cpf = CPF()
+    cpf_valido = cpf.validate(numero_cpf)
+    return not cpf_valido
 
-def nome_invalido(value):
-    if not re.match(r'^[A-Za-zÀ-ÿ\s]+$', value):
-        raise ValidationError("Nome inválido. Use apenas letras e espaços.")
+def nome_invalido(nome):
+    return not nome.isalpha()
 
-def celular_invalido(value):
-    if not re.match(r'^\d{11}$', value):
-        raise ValidationError("Celular inválido. Deve conter 11 dígitos.")
+def celular_invalido(celular):
+    # 86 99999-9999
+    modelo = '[0-9]{2} [0-9]{5}-[0-9]{4}'
+    resposta = re.findall(modelo,celular)
+    #print(resposta)
+    return not resposta
