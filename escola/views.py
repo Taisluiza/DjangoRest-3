@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class EstudanteViewSet(viewsets.ModelViewSet):
     queryset = Estudante.objects.all()
-    
+    # ORDENANDO UTILIZANDO O FILTRO
     filter_backends = [DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter]
     ordering_fields = ['nome']
     search_fields = ['nome','cpf']

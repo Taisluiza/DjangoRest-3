@@ -1,4 +1,6 @@
 import os, django
+import random
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'setup.settings')
 django.setup()
