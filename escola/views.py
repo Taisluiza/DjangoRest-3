@@ -10,6 +10,7 @@ class EstudanteViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter]
     ordering_fields = ['nome']
     search_fields = ['nome','cpf']
+# ADICIONANDO UMA NOVA VERSÃO
     def get_serializer_class(self):
         if self.request.version == 'v2':
             return EstudanteSerializerV2
